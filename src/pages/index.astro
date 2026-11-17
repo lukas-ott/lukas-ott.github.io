@@ -1,0 +1,135 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import portrait from '../assets/portrait.png';
+---
+
+<Base>
+    <section class="intro">
+        <Image
+            class="portrait"
+            src={portrait}
+            alt="Portrait of Lukas Ott"
+            width={240}
+            loading="eager"
+        />
+        <div>
+            <h1>Lukas Ott</h1>
+            <p class="lead">
+                Business Informatics student at the University of Mannheim, graduating in January
+                2027. I work between technology and business: product, data and projects.
+            </p>
+            <p class="status"><span class="dot" aria-hidden="true"></span>Available from February 2027</p>
+        </div>
+    </section>
+
+    <h2>About</h2>
+    <p>
+        I study Business Informatics at the University of Mannheim, a combination of computer
+        science and business administration. My average grade is 1.3 on the German scale (1.0 is
+        best), which puts me in the top 2% of my cohort. I spent 2025–26 on an exchange year at
+        NTNU in Trondheim, focusing on low-level programming and artificial intelligence. My
+        bachelor's thesis is on transposition tables in chess engines.
+    </p>
+    <p>
+        For a year, alongside my studies, I worked part-time as a Product Engineer at peopleIX in
+        Cologne. I built ETL processes in Python and PostgreSQL for customer integrations, designed
+        and implemented the Cube.js data model behind the platform's customer analytics together
+        with a colleague, and resolved data quality and data flow issues directly with customers.
+    </p>
+    <p>
+        I'm interested in roles where technology meets the business: product, data, projects and
+        change. Outside work I play tournament chess (around 1900 FIDE), build <a
+            href="/projects/kiebitz">Kiebitz</a>, my own chess app for the Mac, and play piano
+        and guitar and dance.
+    </p>
+
+    <h2>Selected work</h2>
+    <ul class="selected">
+        <li>
+            <a href="/experience#peopleix">Product Engineer at peopleIX</a>
+            <span class="muted">ETL, data modelling and customer integrations · 2024–25</span>
+        </li>
+        <li>
+            <a href="/projects/kiebitz">Kiebitz</a>
+            <span class="muted">A native macOS chess app in C++20 and Qt 6 · 2026</span>
+        </li>
+        <li>
+            <a href="/projects/splendor">Splendor</a>
+            <span class="muted">Java client-server game in a team of six; I built the REST API · 2025</span>
+        </li>
+    </ul>
+
+    <h2>Contact</h2>
+    <p>
+        The easiest way to reach me is by email: <a
+            href="mailto:lukasott1204@gmail.com">lukasott1204@gmail.com</a>. My code is on <a
+            href="https://github.com/lukas-ott">GitHub</a>.
+    </p>
+    <p><a class="button" href="/lukas-ott-cv.pdf">Download CV (PDF)</a></p>
+</Base>
+
+<style>
+    .intro {
+        display: grid;
+        grid-template-columns: 120px 1fr;
+        gap: 32px;
+        align-items: center;
+    }
+    .portrait {
+        width: 120px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+    .lead {
+        font-family: var(--serif);
+        font-size: 21px;
+        line-height: 1.5;
+        margin: 12px 0 14px;
+    }
+    .status {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        margin: 0;
+        font-size: 14.5px;
+        color: var(--muted);
+    }
+    .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #3a9a6a;
+    }
+    .selected {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    .selected li {
+        display: flex;
+        flex-direction: column;
+        padding: 12px 0;
+        border-top: 1px solid var(--line);
+    }
+    .selected li:first-child {
+        border-top: 0;
+        padding-top: 0;
+    }
+    .selected a {
+        font-weight: 500;
+    }
+    .selected .muted {
+        font-size: 15px;
+    }
+    @media (max-width: 600px) {
+        .intro {
+            grid-template-columns: 1fr;
+            gap: 22px;
+        }
+        .lead {
+            font-size: 19px;
+        }
+    }
+</style>

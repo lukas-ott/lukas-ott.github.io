@@ -1,0 +1,83 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+export async function getStaticPaths() {
+    const projects = await getCollection('projects');
+    return projects.map((project) => ({ params: { id: project.id }, props: { project } }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+
+<Base title={project.data.title} description={project.data.summary}>
+    <p class="back"><a href="/projects">← All projects</a></p>
+    <h1>{project.data.title}</h1>
+    <p class="meta muted">{project.data.context} · {project.data.when}</p>
+    <p class="summary">{project.data.summary}</p>
+
+    {project.data.links.length > 0 && (
+        <p class="links">
+            {project.data.links.map((link) => (
+                <a class="button" href={link.url}>{link.label}</a>
+            ))}
+        </p>
+    )}
+
+    <div class="prose">
+        <Content />
+    </div>
+
+    <ul class="tags">
+        {project.data.tech.map((t) => <li>{t}</li>)}
+    </ul>
+</Base>
+
+<style>
+    .back {
+        font-size: 15px;
+        margin-bottom: 28px;
+    }
+    .back a {
+        color: var(--muted);
+        text-decoration: none;
+    }
+    .back a:hover {
+        color: var(--text);
+    }
+    .meta {
+        margin: 10px 0 18px;
+        font-size: 15px;
+    }
+    .summary {
+        font-family: var(--serif);
+        font-size: 21px;
+        line-height: 1.5;
+    }
+    .links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 24px 0 8px;
+    }
+    .prose :global(h2) {
+        font-size: 22px;
+        margin: 40px 0 12px;
+    }
+    .prose :global(ul) {
+        padding-left: 1.1em;
+    }
+    .prose :global(li) {
+        margin-bottom: 6px;
+    }
+    .prose :global(li::marker) {
+        color: var(--muted);
+    }
+    .prose :global(code) {
+        font-size: 0.9em;
+    }
+    .tags {
+        margin-top: 32px;
+    }
+</style>

@@ -1,0 +1,70 @@
+---
+import '../styles/global.css';
+
+interface Props {
+    title?: string;
+    description?: string;
+}
+
+const {
+    title,
+    description = 'Lukas Ott: Business Informatics student at the University of Mannheim, working between technology and business. Available from February 2027.',
+} = Astro.props;
+
+const fullTitle = title ? `${title} · Lukas Ott` : 'Lukas Ott';
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const nav = [
+    { href: '/', label: 'About' },
+    { href: '/experience', label: 'Experience' },
+    { href: '/projects', label: 'Projects' },
+];
+const current = (href: string) =>
+    href === '/' ? path === '/' : path === href || path.startsWith(href + '/');
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>{fullTitle}</title>
+        <meta name="description" content={description} />
+        <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+        <meta property="og:title" content={fullTitle} />
+        <meta property="og:description" content={description} />
+        <meta property="og:type" content="website" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="generator" content={Astro.generator} />
+    </head>
+    <body>
+        <header class="site-header">
+            <div class="wrap">
+                <a class="site-name" href="/">Lukas Ott</a>
+                <nav class="site-nav" aria-label="Main">
+                    {nav.map((item) => (
+                        <a href={item.href} aria-current={current(item.href) ? 'page' : undefined}>
+                            {item.label}
+                        </a>
+                    ))}
+                </nav>
+            </div>
+        </header>
+
+        <main>
+            <div class="wrap">
+                <slot />
+            </div>
+        </main>
+
+        <footer class="site-footer">
+            <div class="wrap">
+                <span>© {new Date().getFullYear()} Lukas Ott</span>
+                <nav aria-label="Contact">
+                    <a href="mailto:lukasott1204@gmail.com">Email</a>
+                    <a href="https://github.com/lukas-ott">GitHub</a>
+                    <a href="/lukas-ott-cv.pdf">CV (PDF)</a>
+                </nav>
+            </div>
+        </footer>
+    </body>
+</html>

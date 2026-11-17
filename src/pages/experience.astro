@@ -1,0 +1,107 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+    title="Experience"
+    description="Education, work experience and skills of Lukas Ott: Business Informatics at the University of Mannheim, an exchange year at NTNU and Product Engineer at peopleIX."
+>
+    <header class="page-head">
+        <h1>Experience</h1>
+        <a class="button" href="/lukas-ott-cv.pdf">Download CV (PDF)</a>
+    </header>
+
+    <h2>Work</h2>
+    <article class="entry" id="peopleix">
+        <p class="when">Jul 2024 – Jul 2025</p>
+        <div>
+            <h3>Product Engineer</h3>
+            <p class="where">peopleIX GmbH, Cologne · part-time alongside my studies</p>
+            <ul>
+                <li>Developed and maintained ETL processes in Python and PostgreSQL for customer integrations.</li>
+                <li>Designed and implemented the Cube.js data model with a colleague. It supports customer analytics and remains part of the platform.</li>
+                <li>Resolved data quality and data flow issues directly with customers and implemented customer-specific functionality in the production platform.</li>
+                <li>Built Python tools and realistic synthetic datasets for product demonstrations and sales.</li>
+            </ul>
+        </div>
+    </article>
+
+    <h2>Education</h2>
+    <article class="entry">
+        <p class="when">Sep 2023 – Jan 2027</p>
+        <div>
+            <h3>Bachelor's degree in Business Informatics</h3>
+            <p class="where">University of Mannheim</p>
+            <ul>
+                <li>Completing the degree in January 2027. Average grade 1.3 on the German scale (1.0 is best); top 2% of the cohort.</li>
+                <li>Computer science, software development, databases, algorithms, data analysis and business administration.</li>
+                <li>Bachelor's thesis on transposition tables in chess engines.</li>
+            </ul>
+        </div>
+    </article>
+    <article class="entry">
+        <p class="when">Aug 2025 – Jun 2026</p>
+        <div>
+            <h3>Exchange year</h3>
+            <p class="where">NTNU, Trondheim</p>
+            <p>Focus on low-level programming and artificial intelligence.</p>
+        </div>
+    </article>
+
+    <h2>Skills</h2>
+    <dl class="facts">
+        <dt>At work</dt>
+        <dd>Python, PostgreSQL/SQL, ETL, Cube.js, data modelling and data quality</dd>
+        <dt>In projects</dt>
+        <dd>Java, REST/JAX-RS, C++20, Qt 6, CMake, SQLite, JDBC, WebSocket, Git, GitHub, Maven and JUnit</dd>
+        <dt>Languages</dt>
+        <dd>German (native), English (fluent), Norwegian (fluent)</dd>
+    </dl>
+
+    <h2>Beyond work</h2>
+    <dl class="facts">
+        <dt>Activities</dt>
+        <dd>STADS Data Science Initiative: budget work and workshops</dd>
+        <dt>Interests</dt>
+        <dd>Tournament chess (around 1900 FIDE), piano, guitar and dance</dd>
+    </dl>
+</Base>
+
+<style>
+    .page-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+    .page-head + h2 {
+        margin-top: 48px;
+    }
+    .entry p:last-child {
+        margin-bottom: 0;
+    }
+    .facts {
+        display: grid;
+        grid-template-columns: 9.5em 1fr;
+        gap: 10px 24px;
+        margin: 0;
+    }
+    .facts dt {
+        color: var(--muted);
+        font-size: 15px;
+        padding-top: 1px;
+    }
+    .facts dd {
+        margin: 0;
+    }
+    @media (max-width: 600px) {
+        .facts {
+            grid-template-columns: 1fr;
+            gap: 2px;
+        }
+        .facts dd {
+            margin-bottom: 12px;
+        }
+    }
+</style>

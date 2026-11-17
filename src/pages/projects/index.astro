@@ -1,0 +1,45 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<Base
+    title="Projects"
+    description="Projects by Lukas Ott: Kiebitz, a native macOS chess app, a Java client-server game, and hackathon work on data and machine learning."
+>
+    <h1>Projects</h1>
+    <p class="intro muted">Things I've built at university, at hackathons and on my own.</p>
+
+    {projects.map((project) => (
+        <article class="entry">
+            <p class="when">{project.data.when}</p>
+            <div>
+                <h3><a href={`/projects/${project.id}`}>{project.data.title}</a></h3>
+                <p class="where">{project.data.context}</p>
+                <p>{project.data.summary}</p>
+                <ul class="tags">
+                    {project.data.tech.map((t) => <li>{t}</li>)}
+                </ul>
+            </div>
+        </article>
+    ))}
+</Base>
+
+<style>
+    .intro {
+        margin: 14px 0 48px;
+    }
+    h3 a {
+        color: var(--text);
+        text-decoration: none;
+    }
+    h3 a:hover {
+        color: var(--accent);
+        text-decoration: underline;
+    }
+    .entry p:not(.when, .where) {
+        margin: 0;
+    }
+</style>
