@@ -15,11 +15,13 @@ const fullTitle = title ? `${title} · Lukas Ott` : 'Lukas Ott';
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 const nav = [
     { href: '/', label: 'About' },
-    { href: '/experience', label: 'Experience' },
-    { href: '/projects', label: 'Projects' },
+    { href: '/experience/', label: 'Experience' },
+    { href: '/projects/', label: 'Projects' },
 ];
-const current = (href: string) =>
-    href === '/' ? path === '/' : path === href || path.startsWith(href + '/');
+const current = (href: string) => {
+    const target = href.replace(/\/$/, '') || '/';
+    return target === '/' ? path === '/' : path === target || path.startsWith(target + '/');
+};
 ---
 
 <!doctype html>

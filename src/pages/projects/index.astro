@@ -16,7 +16,7 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.order -
         <article class="entry">
             <p class="when">{project.data.when}</p>
             <div>
-                <h3><a href={`/projects/${project.id}`}>{project.data.title}</a></h3>
+                <h3><a href={`/projects/${project.id}/`}>{project.data.title}</a></h3>
                 <p class="where">{project.data.context}</p>
                 <p>{project.data.summary}</p>
                 <ul class="tags">
